@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>6. d, a, c, b</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="app">
+        <div class="dropdown-block js-dropdown-block">
+          <input
+            class="dropdown-block__input js-dropdown-input"
+            type="image"
+            src="../assets/dropdownlist.jpg"
+          />
+          <div class="dropdown-block__content js-dropdown-content">
+            <div class="menu">
+              <div class="menu-item">
+                <button id="transfer" class="menu-item__button">Перенос</button>
+              </div>
+              <div class="menu-item">
+                <button id="scale" class="menu-item__button">
+                  Масштабирование
+                </button>
+                <input type="number" class="menu-item__input" />
+              </div>
+              <div class="menu-item">
+                <button id="reflection" class="menu-item__button">
+                  Отражение
+                </button>
+              </div>
+              <div class="menu-item">
+                <button id="rotate" class="menu-item__button">Поворот</button>
+                <input
+                  type="range"
+                  class="menu-item__input"
+                  id="rotate__range"
+                  value="180"
+                  min="0"
+                  max="360"
+                  step="1"
+                  oninput="this.nextElementSibling.value = this.value"
+                />
+                <output>180</output>
+              </div>
+              <div class="menu-item">
+                <button id="clear-changes" class="menu-item__button">
+                  Очистка изменений
+                </button>
+              </div>
+              <div class="menu-item">
+                <button id="clear-points" class="menu-item__button">
+                  Очистка точек
+                </button>
+              </div>
+              <div class="menu-item">
+                <button id="clear-all" class="menu-item__button">
+                  Очистка
+                </button>
+              </div>
+              <div class="menu-item">
+                <button id="dynamic" class="menu-item__button">Динамика</button>
+              </div>
+              <div class="menu-item">
+                <button id="draw" class="menu-item__button">Рисовать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="workspace">
+          <canvas id="original-canvas" width="740" height="700"></canvas>
+          <canvas id="transformated-canvas" width="740" height="700"></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="../dist/script.js" type="module"></script>
+  </body>
+</html>
