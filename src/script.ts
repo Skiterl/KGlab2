@@ -68,6 +68,14 @@ class Poligon {
     return newPoints;
   }
 
+  porintRotate(phi: number) {
+    return new Matrix(3, 3, [
+      [Math.cos(phi), -Math.sin(phi), 0],
+      [Math.sin(phi), Math.cos(phi), 0],
+      [0, 0, 1],
+    ]);
+  }
+
   addPoint(x: number, y: number) {
     this._points.push(new Matrix(3, 1, [[x], [y], [1]]));
   }
@@ -125,6 +133,20 @@ class Chart {
     const phi = (alpha * Math.PI) / 180;
   }
 
+  pointRotate(alpha: number, x0: number = 0, y0: number = 0) {
+    const normX0 = (x0 - this.canvas.width / 2) / this.scale;
+    const normY0 = (this.canvas.height / 2 - y0) / this.scale;
+    const phi = (alpha * Math.PI) / 180;
+
+    const rotateMatrix = new Matrix(3, 3, [
+      [Math.cos(phi), -Math.sin(phi), normX0],
+      [Math.sin(phi), Math.cos(phi), normY0],
+      [0, 0, 1],
+    ]);
+
+    this._basis = this._basis.multiply(rotateMatrix);
+  }
+
   draw() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (this._grid !== undefined) this._grid.draw();
@@ -133,8 +155,12 @@ class Chart {
 
     const poligon = Chart._poligon.points;
 
-    poligon.forEach((point, i) => {
-      this.drawLine(point, poligon[(i + 1) % poligon.length]);
+    const transPoligon = poligon.map((value, i) => {
+      return this._basis.multiply(value);
+    });
+
+    transPoligon.forEach((point, i) => {
+      this.drawLine(point, transPoligon[(i + 1) % transPoligon.length]);
     });
   }
 
