@@ -67,10 +67,31 @@ body {
   justify-content: space-around;
 }
 
+.canvas-block {
+  width: 100%;
+}
+
 #original-canvas {
   border: 3px solid #af2838;
 }
 
+#original-canvas.rotate-state {
+  background-color: gray;
+}
+
+#original-canvas.reflection-state {
+  background-color: yellow;
+}
+
+#original-canvas.transfer-state {
+  background-color: cyan;
+}
+
 #transformated-canvas {
   border: 3px solid #af2838;
+}
+
+table {
+  border: 1px solid grey;
+  background-color: #9bc7de;
 }
